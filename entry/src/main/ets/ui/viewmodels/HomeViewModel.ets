@@ -17,10 +17,6 @@ export class HomeViewModel extends BaseViewModel {
   }
 
 
-  navigateToAudioList() {
-    this.routeService.pushRoute('ui/pages/audio_list')
-  }
-
 
   startAudio(songModel: SongModel) {
     this.audioService.playEmbeddedMp3(songModel.songPath);

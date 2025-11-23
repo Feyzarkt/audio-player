@@ -1,9 +1,8 @@
-import { ComponentContent, LengthMetrics } from '@kit.ArkUI';
 import { ArcList, ArcListItem, ArcListAttribute, ArcListItemAttribute } from '@kit.ArkUI';
 import { SongModel } from '../../core/models/SongModel';
 import { AudioService } from '../../core/services/AudioService';
-import { RouteService } from '../../core/services/RouteService';
 import { HomeViewModel } from '../viewmodels/HomeViewModel';
+import { AudioView } from './AudioView';
 
 class MenuDataSource implements IDataSource {
   private list: SongModel[];
@@ -40,6 +39,15 @@ struct Home {
   @State currentPage: number = 0; // Current page index
   @State totalPages: number = 2; // Total number of pages
   @State translateX: number = 0;
+  @Provide('pathStack') pathStack: NavPathStack = new NavPathStack()
+
+
+  @Builder
+  PageMap(name: string) {
+    if (name === 'AudioView') {
+      AudioView()
+    }
+  }
 
   private songListDataSource: MenuDataSource = new MenuDataSource(this.homeViewModel.songList);
 
@@ -48,6 +56,7 @@ struct Home {
   }
 
   build() {
+    Navigation(this.pathStack){
     ArcList({ initialIndex: 0 }) {
       LazyForEach(this.songListDataSource, (item: SongModel, index: number) => {
         ArcListItem() {
@@ -61,7 +70,7 @@ struct Home {
             .borderRadius(16)
             .onClick(() => {
               this.homeViewModel.audioService.currentSong = item;
-              RouteService.instance().pushRoute('ui/pages/AudioView')
+              this.pathStack.pushPathByName('AudioView', null)
             })
         }
         .align(Alignment.Center)
@@ -76,6 +85,11 @@ struct Home {
     .focusable(true)
     .focusOnTouch(true)
     .defaultFocus(true)
+  }
+    .mode(NavigationMode.Stack)
+    .hideTitleBar(true)
+    .hideBackButton(true)
+    .navDestination(this.PageMap)
   }
 }
 

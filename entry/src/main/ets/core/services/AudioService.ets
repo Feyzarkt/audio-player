@@ -2,6 +2,7 @@ import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 import { common } from '@kit.AbilityKit';
 import { SongModel } from '../models/SongModel';
+import GlobalContext from './GlobalContext';
 
 export
 enum AudioStatus {
@@ -68,7 +69,7 @@ export class AudioService {
   }
 
   public async playEmbeddedMp3(fileName: string) {
-    const context = getContext(this) as common.UIAbilityContext;
+    const context: common.UIAbilityContext = GlobalContext.getInstance().getServiceContext();
     const resourceFd = await context.resourceManager.getRawFd(fileName);
 
     const avFileDescriptor: media.AVFileDescriptor = {

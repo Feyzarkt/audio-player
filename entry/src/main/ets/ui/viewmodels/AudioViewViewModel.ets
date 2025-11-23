@@ -6,7 +6,7 @@ import { BaseViewModel } from '../../core/services/BaseViewModel';
 export class AudioViewViewModel extends BaseViewModel {
   @Trace isInited: boolean = false;
   audioService: AudioService = AudioService.getInstance();
-  // currentSong: SongModel = this.songList
+
 
   constructor() {
     super();
@@ -16,18 +16,6 @@ export class AudioViewViewModel extends BaseViewModel {
   initVm() {
     this.isInited = true;
   }
-
-
-  navigateToAudioList() {
-    this.routeService.pushRoute('ui/pages/audio_list')
-  }
-
-  // changeFav() {
-  //   const currentIndex = this.songList.indexOf(this.audioService.currentSong);
-  //   this.songList[currentIndex].isFavorite = !this.songList[currentIndex].isFavorite
-  //   this.audioService.currentSong = this.songList[currentIndex];
-  // }
-
 
   async startAudio(songModel: SongModel) {
     await this.audioService.playEmbeddedMp3(songModel.songPath);
@@ -44,7 +32,7 @@ export class AudioViewViewModel extends BaseViewModel {
       this.audioService.currentSong = this.songList[currentIndex + 1];
       this.audioService.playEmbeddedMp3(this.songList[currentIndex + 1].songPath);
     }
-    console.log(this.audioService.currentSong.songName)
+    console.info(this.audioService.currentSong.songName)
   }
 
   previousSong() {
