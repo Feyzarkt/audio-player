@@ -35,10 +35,9 @@ class MenuDataSource implements IDataSource {
 struct Home {
   homeViewModel: HomeViewModel = new HomeViewModel();
   private watchSize: string = '466px';
-  private listSize: string = '414px';
-  @State currentPage: number = 0; // Current page index
-  @State totalPages: number = 2; // Total number of pages
-  @State translateX: number = 0;
+  currentPage: number = 0;
+  totalPages: number = 2;
+  translateX: number = 0;
   @Provide('pathStack') pathStack: NavPathStack = new NavPathStack()
 
 

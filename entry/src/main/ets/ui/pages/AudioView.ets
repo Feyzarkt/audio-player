@@ -16,7 +16,7 @@ export struct AudioView {
         Column() {
           //Author
           Text(this.audioVM.audioService.currentSong.songName)
-            .id('txtItem' + this.audioVM.audioService.currentSong.songAuthor)
+            .id(`txtItem${this.audioVM.audioService.currentSong.songAuthor}`)
             .fontSize($r('app.float.song_font_size'))
             .fontWeight(FontWeight.Bold)
             .fontColor(Color.White)
@@ -31,7 +31,7 @@ export struct AudioView {
 
           //Song
           Text(this.audioVM.audioService.currentSong.songAuthor)
-            .id('txtItem' + this.audioVM.audioService.currentSong.songAuthor)
+            .id(`txtItem${this.audioVM.audioService.currentSong.songAuthor}`)
             .fontSize($r('app.float.song_font_size'))
             .fontWeight(FontWeight.Normal)
             .fontColor(Color.White)
@@ -58,7 +58,7 @@ export struct AudioView {
 
               });
 
-            Image($r(this.audioVM.audioService.audioStatus == AudioStatus.Playing ? 'app.media.pause' :
+            Image($r(this.audioVM.audioService.audioStatus === AudioStatus.Playing ? 'app.media.pause' :
               'app.media.start'))
               .width(50)
               .height(50)

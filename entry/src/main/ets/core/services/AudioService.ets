@@ -9,7 +9,7 @@ enum AudioStatus {
   Undefined,
   Playing,
   Paused,
-  Released,
+  Released
 }
 
 @ObservedV2
@@ -42,7 +42,7 @@ export class AudioService {
         case 'initialized':
           avPlayer.audioRendererInfo = {
             usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
-            rendererFlags: 0,
+            rendererFlags: 0
           };
           avPlayer.prepare();
           break;
@@ -75,7 +75,7 @@ export class AudioService {
     const avFileDescriptor: media.AVFileDescriptor = {
       fd: resourceFd.fd,
       offset: resourceFd.offset,
-      length: resourceFd.length,
+      length: resourceFd.length
     };
     this.player = await media.createAVPlayer();
     this.setCallbacks(this.player);

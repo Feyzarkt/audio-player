@@ -19,7 +19,7 @@ export default class GlobalContext {
 
   public getServiceContext(): common.UIAbilityContext {
     if (!this.uiContext) {
-      throw new Error('UI context henüz hazır değil.');
+      throw new Error('UI is not ready.');
     }
     return this.uiContext;
   }
