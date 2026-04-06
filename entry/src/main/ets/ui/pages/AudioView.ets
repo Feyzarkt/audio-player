@@ -123,7 +123,7 @@ export struct AudioView {
     }
     .focusable(true)
     .defaultFocus(true)
-    .onCrownRotation((event: CrownRotationEvent) => {
+    .onDigitalCrown((event: CrownEvent) => {
       const sensitivity = 0.001; // Adjust sensitivity as needed
       const delta = event.angularVelocity * sensitivity;
       const oldVolume = this.audioVM.audioService.volume;
